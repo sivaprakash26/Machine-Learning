@@ -11,6 +11,7 @@ import os
 os.chdir(r'D:\Siva Learning')
 from Settings import *
 
+app = Flask(__name__)
 
 Books = [
         {

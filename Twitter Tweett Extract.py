@@ -80,7 +80,6 @@ for follower in user.followers():
 alltweets = []	
 #make initial request for most recent tweets (200 is the maximum allowed count)
 new_tweets = api.user_timeline(screen_name = "CNBCFastMoney",count=200)
-	
 #save most recent tweets
 alltweets.extend(new_tweets)
 #save the id of the oldest tweet less one

@@ -1,15 +1,8 @@
 
-# coding: utf-8
-
-# In[14]:
-
-
 import pandas as pd
 import os
 import numpy as np
 
-
-# In[34]:
 
 
 labels = {'pos': 1, 'neg' : 0}
@@ -25,22 +18,11 @@ for s in ('test', 'train'):
 df.columns = ['review', 'sentiment']
 
 
-# In[36]:
-
-
 np.random.seed(0)
 df = df.reindex(np.random.permutation(df.index))
 
-
-# In[7]:
-
-
 df = pd.read_csv(r'D:\DataScience\PYTHON\aclImdb_v1\aclImdb\Movie_Data.csv')
 df.head(3)
-
-
-# In[49]:
-
 
 from sklearn.feature_extraction.text import CountVectorizer
 count = CountVectorizer()
@@ -49,25 +31,13 @@ docs = np.array(['the sun is shining',
                 'the sun is shining and the weather is sweet'])
 bag = count.fit_transform(docs)
 
-
-# In[50]:
-
-
 print(count.vocabulary_) 
 print(bag.toarray())
-
-
-# In[51]:
-
 
 from sklearn.feature_extraction.text import TfidfTransformer
 tfidf = TfidfTransformer()
 np.set_printoptions(precision=2)
 print(tfidf.fit_transform(count.fit_transform(docs)).toarray())
-
-
-# In[91]:
-
 
 import re
 def preprocessor(text):
@@ -77,13 +47,7 @@ def preprocessor(text):
     return text
 
 
-# In[101]:
-
-
 df['review'] = df['review'].apply(preprocessor)
-
-
-# In[104]:
 
 
 def tokenizer(text):
@@ -91,42 +55,23 @@ def tokenizer(text):
 tokenizer('hello hi how are you doing')
 
 
-# In[109]:
-
-
 from nltk.stem.porter import PorterStemmer
 porter = PorterStemmer()
 def tokenizer_porter(text):
     return [porter.stem(word) for word in text.split()]
 
-
-# In[106]:
-
-
 import nltk
 nltk.download('stopwords')
-
-
-# In[113]:
 
 
 from nltk.corpus import stopwords
 stop = stopwords.words('english')
 print([w for w in tokenizer_porter('a runner likes running and runs as fast as possible') if w not in stop])
 
-
-# # NLP Sentiment Analysis
-
-# In[114]:
-
-
 x_train = df.loc[:25000, 'review'].values
 x_test = df.loc[25000:, 'review'].values
 y_train = df.loc[:25000, 'sentiment'].values
 y_test = df.loc[25000:, 'sentiment'].values
-
-
-# In[ ]:
 
 
 from sklearn.grid_search import GridSearchCV
@@ -158,4 +103,3 @@ print('CV Accuracy : %.3f' % gs_lr_tfidf.best_score_)
 
 clf = gs_lr_tfidf.best_estimator_
 print('Test Accuracy : %.3f ' % clf.score(x_test, y_test))
-
