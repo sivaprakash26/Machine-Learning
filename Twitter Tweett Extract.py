@@ -6,10 +6,10 @@ Created on Mon Sep 16 22:50:01 2019
 """
 import tweepy as tw
 
-consumer_key= '6muT2tQjRlE2z1LoUPKlnYDPt'
-consumer_secret= '7pZBrjRcfFG7cEZz7ZKtuCnFLnfbY3hVuACZuKtaVRErcwjf7c'
-access_token= '230706788-zAsxX0qM69obzFZatzVCg5VOscEIMZlQfwPi6xdQ'
-access_token_secret= 'w3a8VLQhQ2NUbpQjgufYE724PEweFVXRFKhLmuphB1MTH'
+consumer_key= 'KeygoesHere'
+consumer_secret= 'KeyGoesHere'
+access_token= 'KeyGoesHere'
+access_token_secret= 'KeyGoesHere'
 
 auth = tw.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
